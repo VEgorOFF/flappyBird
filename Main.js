@@ -10,7 +10,7 @@ import Medal from "./Medal.js";
 
 //спрайты
 const sprite = new Image();
-sprite.src = "./img/sprite.png";
+sprite.src = "img/sprite.png";
 
 const cvs = document.getElementById("bird");
 const ctx = cvs.getContext("2d");
@@ -19,13 +19,13 @@ ctx.fillStyle = "#70c5ce";
 ctx.fillRect(0, 0, cvs.width, cvs.height);
 
 const soundFlap = new Audio();
-soundFlap.src = "./audio/sfx_flap.wav";
+soundFlap.src = "audio/sfx_flap.wav";
 const soundHit = new Audio();
-soundHit.src = "./audio/sfx_hit.wav";
+soundHit.src = "audio/sfx_hit.wav";
 const soundPoint = new Audio();
-soundPoint.src = "./audio/sfx_point.wav";
+soundPoint.src = "audio/sfx_point.wav";
 const soundSwooshing = new Audio();
-soundSwooshing.src = "./audio/sfx_swooshing.wav";
+soundSwooshing.src = "audio/sfx_swooshing.wav";
 
 const config = new Config();
 const backGround = new BackGround(sprite, cvs, ctx, config.bg.sX, config.bg.sY, config.bg.w, config.bg.h, config.bg.x, config.bg.y);
