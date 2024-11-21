@@ -10,7 +10,7 @@ import Medal from "./Medal.js";
 
 //спрайты
 const sprite = new Image();
-sprite.src = "/img/sprite.png";
+sprite.src = "flappyBird/img/sprite.png";
 
 const cvs = document.getElementById("bird");
 const ctx = cvs.getContext("2d");
