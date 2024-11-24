@@ -185,3 +185,7 @@ sprite.addEventListener("load", function () {
   // сработает по загрузке картинки
   loop();
 });
+
+sprite.addEventListener("error", function () {
+  console.log("ошибка");
+});
