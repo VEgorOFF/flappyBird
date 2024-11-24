@@ -90,7 +90,7 @@ function collisionPipes() {
     if (bird.x + bird.radius > p.x && bird.x - bird.radius < p.x + pipes.w && bird.y + bird.radius > p.y && bird.y - bird.radius < p.y + pipes.h) {
       bird.current = bird.over;
       pipes.current = pipes.over;
-      soundHit.play();
+      // soundHit.play();
     }
     if (bird.x + bird.radius > p.x && bird.x - bird.radius < p.x + pipes.w && bird.y + bird.radius > bottomPipeYPos && bird.y - bird.radius < bottomPipeYPos + pipes.h) {
       bird.current = bird.over;
