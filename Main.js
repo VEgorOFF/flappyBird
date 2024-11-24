@@ -13,6 +13,7 @@ const sprite = new Image();
 sprite.src = "/img/sprite.png";
 
 sprite.onload = () => {
+  console.log("Работает");
   // Начинайте цикл игры только после загрузки изображения
   loop();
 };
