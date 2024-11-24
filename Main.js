@@ -12,12 +12,6 @@ import Medal from "./Medal.js";
 const sprite = new Image();
 sprite.src = "/img/sprite.png";
 
-sprite.onload = () => {
-  console.log("Работает");
-  // Начинайте цикл игры только после загрузки изображения
-  loop();
-};
-
 const cvs = document.getElementById("bird");
 const ctx = cvs.getContext("2d");
 
@@ -177,3 +171,28 @@ function loop() {
   update();
   requestAnimationFrame(loop);
 }
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   loop();
+// });
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`Не удалось загрузить изображение: ${src}`));
+  });
+}
+
+async function startGame() {
+  try {
+    const sprite = await loadImage("/img/sprite.png");
+    // Инициализация и запуск игры
+    loop();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+startGame();
