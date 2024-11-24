@@ -138,7 +138,6 @@ function draw() {
 
   if (bird.current == bird.over) {
     gameOver.draw();
-    console.log(score.value);
     if (score.value == 0) {
       medalWhite.draw();
     }
@@ -173,4 +172,6 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-loop();
+window.addEventListener("load", () => {
+  loop();
+});
