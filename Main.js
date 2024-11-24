@@ -172,6 +172,6 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-sprite.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
   loop();
-};
+});
