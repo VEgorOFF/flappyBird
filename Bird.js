@@ -2,8 +2,8 @@ import Config from "./Config.js";
 
 const config = new Config();
 
-const soundDie = new Audio();
-soundDie.src = "/audio/sfx_die.wav";
+// const soundDie = new Audio();
+// soundDie.src = "/audio/sfx_die.wav";
 
 class Bird {
   constructor(sprite, cvs, ctx, x, y, w, h, radius, frame, gravity, jump, speed, current, getReady, game, over) {
@@ -70,7 +70,7 @@ class Bird {
 
         if (this.current == this.game) {
           this.current = this.over;
-          soundDie.play();
+          // soundDie.play();
         }
       }
 
