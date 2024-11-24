@@ -172,6 +172,6 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", function () {
   loop();
 });
