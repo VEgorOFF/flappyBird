@@ -176,7 +176,12 @@ function loop() {
 //   loop();
 // });
 
-sprite.onload = () => {
-  console.log("worked");
+// sprite.onload = () => {
+//   console.log("worked");
+
+// };
+
+sprite.addEventListener("load", function () {
+  // сработает по загрузке картинки
   loop();
-};
+});
