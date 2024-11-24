@@ -176,23 +176,7 @@ function loop() {
 //   loop();
 // });
 
-function loadImage(src) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.src = src;
-    img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error(`Не удалось загрузить изображение: ${src}`));
-  });
-}
-
-async function startGame() {
-  try {
-    const sprite = await loadImage("/img/sprite.png");
-    // Инициализация и запуск игры
-    loop();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-startGame();
+sprite.onload = () => {
+  console.log("worked");
+  loop();
+};
