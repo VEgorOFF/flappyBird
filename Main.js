@@ -9,8 +9,8 @@ import Score from "./Score.js";
 import Medal from "./Medal.js";
 
 //спрайты
-const sprite = new Image();
-sprite.src = "/img/sprite.png";
+// const sprite = new Image();
+// sprite.src = "/img/sprite.png";
 
 const cvs = document.getElementById("bird");
 const ctx = cvs.getContext("2d");
@@ -172,20 +172,28 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   loop();
-// });
-
 // sprite.onload = () => {
 //   console.log("worked");
-
+//   loop();
 // };
 
-sprite.addEventListener("load", function () {
-  // сработает по загрузке картинки
-  loop();
-});
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`Не удалось загрузить изображение: ${src}`));
+  });
+}
 
-sprite.addEventListener("error", function () {
-  console.log("ошибка");
-});
+async function startGame() {
+  try {
+    const sprite = await loadImage("/img/sprite.png");
+    // Инициализация и запуск игры
+    loop();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+startGame();
