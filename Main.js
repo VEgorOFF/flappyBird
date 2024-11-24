@@ -12,6 +12,11 @@ import Medal from "./Medal.js";
 const sprite = new Image();
 sprite.src = "/img/sprite.png";
 
+sprite.onload = () => {
+  // Начинайте цикл игры только после загрузки изображения
+  loop();
+};
+
 const cvs = document.getElementById("bird");
 const ctx = cvs.getContext("2d");
 
@@ -171,7 +176,3 @@ function loop() {
   update();
   requestAnimationFrame(loop);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  loop();
-});
