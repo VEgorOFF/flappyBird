@@ -172,7 +172,7 @@ function loadImage(src) {
 
 async function startGame() {
   try {
-    const sprite = await loadImage("../img/sprite.png");
+    const sprite = await loadImage("./img/sprite.png");
 
     backGround = new BackGround(sprite, cvs, ctx, config.bg.sX, config.bg.sY, config.bg.w, config.bg.h, config.bg.x, config.bg.y);
     downGround = new DownGround(sprite, cvs, ctx, config.fg.sX, config.fg.sY, config.fg.w, config.fg.h, config.fg.x, config.fg.y, config.fg.dx);
