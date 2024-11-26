@@ -167,15 +167,6 @@ function loadImage(src) {
   });
 }
 
-function loadAudio(src) {
-  return new Promise((resolve, reject) => {
-    const soundFlap = new Audio();
-    soundFlap.src = src;
-    soundFlap.onload = () => resolve(soundFlap);
-    soundFlap.onerror = () => reject(new Error(`Не удалось загрузить аудио: ${src}`));
-  });
-}
-
 async function startGame() {
   try {
     const sprite = await loadImage("img/sprite.png");
