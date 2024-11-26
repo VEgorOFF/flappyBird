@@ -9,9 +9,6 @@ import Score from "./Score.js";
 import Medal from "./Medal.js";
 
 let sprite, backGround, downGround, bird, pipes, getReady, gameOver, score, medalWhite, medalBronze, medalSilver, medalGold;
-//спрайты
-// const sprite = new Image();
-// sprite.src = "/img/sprite.png";
 
 const cvs = document.getElementById("bird");
 const ctx = cvs.getContext("2d");
@@ -19,14 +16,14 @@ const ctx = cvs.getContext("2d");
 ctx.fillStyle = "#70c5ce";
 ctx.fillRect(0, 0, cvs.width, cvs.height);
 
-// const soundFlap = new Audio();
-// soundFlap.src = "/audio/sfx_flap.wav";
-// const soundHit = new Audio();
-// soundHit.src = "/audio/sfx_hit.wav";
-// const soundPoint = new Audio();
-// soundPoint.src = "/audio/sfx_point.wav";
-// const soundSwooshing = new Audio();
-// soundSwooshing.src = "/audio/sfx_swooshing.wav";
+const soundFlap = new Audio();
+soundFlap.src = "/audio/sfx_flap.wav";
+const soundHit = new Audio();
+soundHit.src = "/audio/sfx_hit.wav";
+const soundPoint = new Audio();
+soundPoint.src = "/audio/sfx_point.wav";
+const soundSwooshing = new Audio();
+soundSwooshing.src = "/audio/sfx_swooshing.wav";
 
 const config = new Config();
 
@@ -36,11 +33,11 @@ cvs.addEventListener("click", function (evt) {
       bird.current = bird.game;
       pipes.current = pipes.game;
       score.current = score.game;
-      // soundSwooshing.play();
+      soundSwooshing.play();
       break;
     case bird.game:
       bird.flap();
-      // soundFlap.play();
+      soundFlap.play();
       break;
     case bird.over:
       let rect = cvs.getBoundingClientRect();
@@ -79,19 +76,19 @@ function collisionPipes() {
     if (bird.x + bird.radius > p.x && bird.x - bird.radius < p.x + pipes.w && bird.y + bird.radius > p.y && bird.y - bird.radius < p.y + pipes.h) {
       bird.current = bird.over;
       pipes.current = pipes.over;
-      // soundHit.play();
+      soundHit.play();
     }
     if (bird.x + bird.radius > p.x && bird.x - bird.radius < p.x + pipes.w && bird.y + bird.radius > bottomPipeYPos && bird.y - bird.radius < bottomPipeYPos + pipes.h) {
       bird.current = bird.over;
       pipes.current = pipes.over;
-      // soundHit.play();
+      soundHit.play();
     }
 
     if (p.x + pipes.w <= 0) {
       pipes.position.shift();
 
       score.value += 1;
-      // soundPoint.play();
+      soundPoint.play();
       score.best = Math.max(score.value, score.best);
       localStorage.setItem("best", score.best);
     }
@@ -167,6 +164,15 @@ function loadImage(src) {
     img.src = src;
     img.onload = () => resolve(img);
     img.onerror = () => reject(new Error(`Не удалось загрузить изображение: ${src}`));
+  });
+}
+
+function loadAudio(src) {
+  return new Promise((resolve, reject) => {
+    const soundFlap = new Audio();
+    soundFlap.src = src;
+    soundFlap.onload = () => resolve(soundFlap);
+    soundFlap.onerror = () => reject(new Error(`Не удалось загрузить аудио: ${src}`));
   });
 }
 
