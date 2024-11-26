@@ -8,6 +8,7 @@ import GameOver from "./GameOver.js";
 import Score from "./Score.js";
 import Medal from "./Medal.js";
 
+let sprite, backGround, downGround, bird, pipes, getReady, gameOver, score, medalWhite, medalBronze, medalSilver, medalGold;
 //спрайты
 // const sprite = new Image();
 // sprite.src = "/img/sprite.png";
@@ -28,18 +29,6 @@ ctx.fillRect(0, 0, cvs.width, cvs.height);
 // soundSwooshing.src = "/audio/sfx_swooshing.wav";
 
 const config = new Config();
-const backGround = new BackGround(sprite, cvs, ctx, config.bg.sX, config.bg.sY, config.bg.w, config.bg.h, config.bg.x, config.bg.y);
-const downGround = new DownGround(sprite, cvs, ctx, config.fg.sX, config.fg.sY, config.fg.w, config.fg.h, config.fg.x, config.fg.y, config.fg.dx);
-const bird = new Bird(sprite, cvs, ctx, config.bird.x, config.bird.y, config.bird.w, config.bird.h, config.bird.radius, config.bird.frame, config.bird.gravity, config.bird.jump, config.bird.speed, config.state.current, config.state.getReady, config.state.game, config.state.over);
-const pipes = new Pipes(sprite, cvs, ctx, config.pipes.w, config.pipes.h, config.pipes.gap, config.pipes.maxYPos, config.pipes.dx, config.state.current, config.state.getReady, config.state.game, config.state.over);
-const getReady = new GetReady(sprite, cvs, ctx, config.getReady.sX, config.getReady.sY, config.getReady.w, config.getReady.h, config.getReady.x, config.getReady.y);
-const gameOver = new GameOver(sprite, cvs, ctx, config.gameOver.sX, config.gameOver.sY, config.gameOver.w, config.gameOver.h, config.gameOver.x, config.gameOver.y);
-const score = new Score(cvs, ctx, config.state.current, config.state.getReady, config.state.game, config.state.over);
-
-const medalWhite = new Medal(sprite, cvs, ctx, config.medalWhite.sX, config.medalWhite.sY, config.medalWhite.w, config.medalWhite.h, config.medalWhite.x, config.medalWhite.y);
-const medalBronze = new Medal(sprite, cvs, ctx, config.medalBronze.sX, config.medalBronze.sY, config.medalBronze.w, config.medalBronze.h, config.medalBronze.x, config.medalBronze.y);
-const medalSilver = new Medal(sprite, cvs, ctx, config.medalSilver.sX, config.medalSilver.sY, config.medalSilver.w, config.medalSilver.h, config.medalSilver.x, config.medalSilver.y);
-const medalGold = new Medal(sprite, cvs, ctx, config.medalGold.sX, config.medalGold.sY, config.medalGold.w, config.medalGold.h, config.medalGold.x, config.medalGold.y);
 
 cvs.addEventListener("click", function (evt) {
   switch (bird.current) {
@@ -189,6 +178,18 @@ function loadImage(src) {
 async function startGame() {
   try {
     const sprite = await loadImage("/img/sprite.png");
+
+    backGround = new BackGround(sprite, cvs, ctx, config.bg.sX, config.bg.sY, config.bg.w, config.bg.h, config.bg.x, config.bg.y);
+    downGround = new DownGround(sprite, cvs, ctx, config.fg.sX, config.fg.sY, config.fg.w, config.fg.h, config.fg.x, config.fg.y, config.fg.dx);
+    bird = new Bird(sprite, cvs, ctx, config.bird.x, config.bird.y, config.bird.w, config.bird.h, config.bird.radius, config.bird.frame, config.bird.gravity, config.bird.jump, config.bird.speed, config.state.current, config.state.getReady, config.state.game, config.state.over);
+    pipes = new Pipes(sprite, cvs, ctx, config.pipes.w, config.pipes.h, config.pipes.gap, config.pipes.maxYPos, config.pipes.dx, config.state.current, config.state.getReady, config.state.game, config.state.over);
+    getReady = new GetReady(sprite, cvs, ctx, config.getReady.sX, config.getReady.sY, config.getReady.w, config.getReady.h, config.getReady.x, config.getReady.y);
+    gameOver = new GameOver(sprite, cvs, ctx, config.gameOver.sX, config.gameOver.sY, config.gameOver.w, config.gameOver.h, config.gameOver.x, config.gameOver.y);
+    score = new Score(cvs, ctx, config.state.current, config.state.getReady, config.state.game, config.state.over);
+    medalWhite = new Medal(sprite, cvs, ctx, config.medalWhite.sX, config.medalWhite.sY, config.medalWhite.w, config.medalWhite.h, config.medalWhite.x, config.medalWhite.y);
+    medalBronze = new Medal(sprite, cvs, ctx, config.medalBronze.sX, config.medalBronze.sY, config.medalBronze.w, config.medalBronze.h, config.medalBronze.x, config.medalBronze.y);
+    medalSilver = new Medal(sprite, cvs, ctx, config.medalSilver.sX, config.medalSilver.sY, config.medalSilver.w, config.medalSilver.h, config.medalSilver.x, config.medalSilver.y);
+    medalGold = new Medal(sprite, cvs, ctx, config.medalGold.sX, config.medalGold.sY, config.medalGold.w, config.medalGold.h, config.medalGold.x, config.medalGold.y);
     // Инициализация и запуск игры
     loop();
   } catch (error) {
